@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All India King</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #111;
+        color: white;
+    }
+
+    h1 {
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        font-size: 18px;
+        background: gold;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .number {
+        padding: 20px;
+        background: #222;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .number:hover {
+        background: gold;
+        color: black;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .payment-box {
+        margin-top: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>All India King 👑</h1>
+
+<!-- Home Page -->
+<div id="home">
+    <button class="btn" onclick="startGame()">Play</button>
+</div>
+
+<!-- Numbers Page -->
+<div id="game" class="hidden">
+    <h2>Select a Number</h2>
+    <div class="grid" id="numbers"></div>
+</div>
+
+<!-- Payment Page -->
+<div id="payment" class="hidden">
+    <h2>Payment Required</h2>
+    <p id="selectedNumber"></p>
+
+    <div class="payment-box">
+        <button class="btn" onclick="pay()">Pay Now</button>
+    </div>
+</div>
+
+<script>
+function startGame() {
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("game").classList.remove("hidden");
+
+    let container = document.getElementById("numbers");
+    container.innerHTML = "";
+
+    for (let i = 1; i <= 100; i++) {
+        let div = document.createElement("div");
+        div.className = "number";
+        div.innerText = i;
+
+        div.onclick = function() {
+            selectNumber(i);
+        };
+
+        container.appendChild(div);
+    }
+}
+
+function selectNumber(num) {
+    document.getElementById("game").classList.add("hidden");
+    document.getElementById("payment").classList.remove("hidden");
+
+    document.getElementById("selectedNumber").innerText =
+        "You selected number: " + num;
+}
+
+function pay() {
+    alert("Payment Successful!");
+}
+</script>
+
+</body>
+</html>
